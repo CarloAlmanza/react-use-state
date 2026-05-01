@@ -3,20 +3,41 @@ import LanguageButton from "./LanguageButton";
 import LanguageCard from "./LanguageCard";
 
 const languages = [
-  { id: 1, title: "HTML", description: "HTML (HyperText Markup Language)..." },
-  { id: 2, title: "CSS", description: "CSS (Cascading Style Sheets)..." },
-  { id: 3, title: "JavaScript", description: "JavaScript è un linguaggio..." },
-  { id: 4, title: "Node.js", description: "Node.js è un runtime JS..." },
-  { id: 5, title: "Express", description: "Express è un framework..." },
-  { id: 6, title: "ReactJS", description: "ReactJS è una libreria..." }
+  {
+    id: 1,
+    title: "HTML",
+    description: "HTML (HyperText Markup Language) è il linguaggio standard..."
+  },
+  {
+    id: 2,
+    title: "CSS",
+    description: "CSS (Cascading Style Sheets) è un linguaggio di stile..."
+  },
+  {
+    id: 3,
+    title: "JavaScript",
+    description: "JavaScript è un linguaggio di programmazione dinamico..."
+  },
+  {
+    id: 4,
+    title: "Node.js",
+    description: "Node.js è un ambiente runtime lato server..."
+  },
+  {
+    id: 5,
+    title: "Express",
+    description: "Express è un framework per Node.js..."
+  },
+  {
+    id: 6,
+    title: "ReactJS",
+    description: "ReactJS è una libreria per costruire UI..."
+  }
 ];
 
 function App() {
-  const [activeId, setActiveId] = useState(null);
-
-  const handleClick = (id) => {
-    setActiveId(activeId === id ? null : id); // toggle
-  };
+  // 👉 partiamo dal primo linguaggio
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
 
   return (
     <div style={{ padding: "20px" }}>
@@ -28,21 +49,17 @@ function App() {
           <LanguageButton
             key={lang.id}
             title={lang.title}
-            isActive={activeId === lang.id}
-            onClick={() => handleClick(lang.id)}
+            isActive={selectedLanguage.id === lang.id}
+            onClick={() => setSelectedLanguage(lang)}
           />
         ))}
       </div>
 
-      {/* CARD */}
-      {languages.map((lang) => (
-        <LanguageCard
-          key={lang.id}
-          title={lang.title}
-          description={lang.description}
-          isActive={activeId === lang.id}
-        />
-      ))}
+      {/* CARD UNICA */}
+      <LanguageCard
+        title={selectedLanguage.title}
+        description={selectedLanguage.description}
+      />
     </div>
   );
 }
