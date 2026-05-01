@@ -1,4 +1,4 @@
-function LanguageCard({ title, description }) {
+function LanguageDetail({ language }) {
     return (
         <div
             style={{
@@ -7,10 +7,10 @@ function LanguageCard({ title, description }) {
                 padding: "15px"
             }}
         >
-            <h2>{title}</h2>
-            <p>{description}</p>
+            <h2>{language.title}</h2>
+            <p>{language.description}</p>
         </div>
     );
 }
 
-export default LanguageCard;
+export default LanguageDetail;
